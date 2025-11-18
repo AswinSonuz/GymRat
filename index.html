@@ -1,3 +1,4 @@
+<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,9 +8,13 @@
 <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+<div class="theme-toggle" onclick="toggleTheme()">☾</div>
+
+
 <section class="hero">
 <div class="hero-content">
-<h1>GymX - Your Ultimate Gym Companion</h1>
+<h1>GymX</h1>
+<p class="subtitle">Your Ultimate Gym Companion</p>
 </div>
 <div class="watermark">Designed by Sonuzz</div>
 </section>
@@ -18,14 +23,16 @@
 <section class="about">
 <h2>Welcome to GymX</h2>
 <p>
-This platform is designed for both hardcore gym rats and beginners who want to start their fitness journey.
-You'll get workout guidance, progress tracking, nutrition support, and a clean premium UI that enhances your experience.
-Stay consistent, stay strong, and let this tool guide your transformation.
+A premium fitness platform made for both gym beginners and advanced lifters. Clean design, powerful tools, and a user-first experience.
 </p>
-
-
 <a href="#" class="continue-btn">Continue</a>
 </section>
+
+
+<script>
+function toggleTheme() {
+document.body.classList.toggle('dark');
+}
+</script>
 </body>
 </html>
-
