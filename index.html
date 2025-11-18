@@ -1,38 +1,44 @@
-<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>GymX | Homepage</title>
+<title>GymBro • Transform Better</title>
 <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+
 <div class="theme-toggle" onclick="toggleTheme()">☾</div>
 
+<header class="navbar">
+    <h2 class="logo"></h2>
+</header>
 
 <section class="hero">
-<div class="hero-content">
-<h1>GymX</h1>
-<p class="subtitle">Your Ultimate Gym Companion</p>
-</div>
-<div class="watermark">Designed by Sonuzz</div>
+    <div class="overlay"></div>
+    <div class="hero-content">
+        <h1 class="title">GymBRO Transform Better</h1>
+        <p class="subtitle">A platform built for beginners and hardcore gym rats.</p>
+
+        <!-- EXPLORE BUTTON THAT NOW WORKS -->
+        <a href="login.html" class="btn-primary">Explore</a>
+    </div>
+    <div class="watermark">Sonuzz</div>
 </section>
-
-
-<section class="about">
-<h2>Welcome to GymX</h2>
-<p>
-A premium fitness platform made for both gym beginners and advanced lifters. Clean design, powerful tools, and a user-first experience.
-</p>
-<a href="#" class="continue-btn">Continue</a>
-</section>
-
 
 <script>
+// Load saved theme on page load
+const savedTheme = localStorage.getItem("theme");
+if (savedTheme === "dark") {
+    document.body.classList.add("dark");
+}
+
+// Toggle Theme + Save preference
 function toggleTheme() {
-document.body.classList.toggle('dark');
+    const isDark = document.body.classList.toggle("dark");
+    localStorage.setItem("theme", isDark ? "dark" : "light");
 }
 </script>
+
 </body>
 </html>

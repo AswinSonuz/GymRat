@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Register • GymBRO</title>
+
+  <link rel="stylesheet" href="stylehome.css" />
+  <script src="register.js" defer></script>
+
+</head>
+<body>
+
+<!-- THEME TOGGLE -->
+<div class="theme-toggle" onclick="toggleTheme()">☾</div>
+
+<!-- BACKGROUND VIDEO -->
+<video autoplay loop muted playsinline class="bg-video">
+  <source src="gym-bg.mp4" type="video/mp4" />
+</video>
+
+<section class="auth-page">
+  <div class="auth-box">
+    <h2>Create Your Account</h2>
+    <p>Start your GymBRO journey</p>
+
+    <form id="registerForm">
+
+  <input type="text" id="fullName" placeholder="Full Name" required />
+
+  <input type="text" id="username" placeholder="Username" required />
+
+  <input type="email" id="regEmail" placeholder="Email" required />
+
+  <input type="number" id="age" placeholder="Age" min="14" max="80" required />
+
+  <select id="gender" required>
+    <option value="" disabled selected>Gender</option>
+    <option value="male">Male</option>
+    <option value="female">Female</option>
+    <option value="other">Other</option>
+  </select>
+
+  <select id="goal" required>
+    <option value="" disabled selected>Your Fitness Goal</option>
+    <option value="fatloss">Fat Loss</option>
+    <option value="muscle">Muscle Gain</option>
+    <option value="bulking">Bulking</option>
+    <option value="maintenance">Maintenance</option>
+  </select>
+
+  <input type="password" id="regPassword" placeholder="Password" required />
+  
+  <input type="password" id="confirmPassword" placeholder="Confirm Password" required />
+
+  <button class="auth-btn" type="submit">Register</button>
+
+</form>
+
+
+    <a href="login.html" class="switch-link">Already have an account? Login</a>
+  </div>
+</section>
+
+<script>
+// Load theme
+const savedTheme = localStorage.getItem("theme");
+if (savedTheme === "dark") document.body.classList.add("dark");
+
+function toggleTheme() {
+  const isDark = document.body.classList.toggle("dark");
+  localStorage.setItem("theme", isDark ? "dark" : "light");
+}
+</script>
+
+</body>
+</html>

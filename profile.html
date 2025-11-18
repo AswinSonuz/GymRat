@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="stylehome.css">
+    <title>Profile • GymBRO</title>
+</head>
+<body>
+
+<div class="theme-toggle" onclick="toggleTheme()">☾</div>
+
+<section class="profile-container">
+    <div class="profile-card">
+        <h2>Your Profile</h2>
+        <p><b>Name:</b> <span id="p-name"></span></p>
+        <p><b>Username:</b> <span id="p-username"></span></p>
+        <p><b>Email:</b> <span id="p-email"></span></p>
+        <p><b>Age:</b> <span id="p-age"></span></p>
+        <p><b>Gender:</b> <span id="p-gender"></span></p>
+        <p><b>Goal:</b> <span id="p-goal"></span></p>
+
+        <button id="logout-btn">Logout</button>
+    </div>
+</section>
+
+<script>
+// Load and display user data
+const user = JSON.parse(localStorage.getItem("gymbro-user"));
+
+if (!user) {
+    window.location.href = "login.html";  // force login
+}
+
+document.getElementById("p-name").textContent = user.name;
+document.getElementById("p-username").textContent = user.username;
+document.getElementById("p-email").textContent = user.email;
+document.getElementById("p-age").textContent = user.age;
+document.getElementById("p-gender").textContent = user.gender;
+document.getElementById("p-goal").textContent = user.goal;
+
+// Logout
+document.getElementById("logout-btn").onclick = () => {
+    localStorage.removeItem("gymbro-user");
+    window.location.href = "login.html";
+};
+</script>
+
+</body>
+</html>
