@@ -4,9 +4,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Login • GymBRO</title>
+
   <link rel="stylesheet" href="stylehome.css" />
+
+  <!-- IMPORTANT: Firebase must load BEFORE login.js -->
+  <script type="module" src="firebase.js"></script>
+  <script type="module" src="login.js"></script>
 </head>
-<script src="login.js"></script>
 
 <body>
   <div class="theme-toggle" onclick="toggleTheme()">☾</div>
@@ -17,23 +21,23 @@
     <source src="gym-bg.mp4" type="video/mp4">
   </video>
 
-  <!-- DARK LAYER ON TOP OF VIDEO -->
   <div class="video-overlay"></div>
 
   <div class="auth-box">
     <h2>Welcome Back</h2>
     <p>Login to continue</p>
 
-    <form>
-      <input type="email" placeholder="Email" required />
-      <input type="password" placeholder="Password" required />
-      <button class="auth-btn" type="submit">Login</button>
-    </form>
+   <form id="loginForm">
+  <input id="loginEmail" type="email" placeholder="Email" required />
+  <input id="loginPassword" type="password" placeholder="Password" required />
+  <button class="auth-btn" type="submit">Login</button>
+</form>
+
 
     <a href="register.html" class="switch-link">Don't have an account? Register</a>
   </div>
-</section>
 
+</section>
 
 <script>
 // Load saved theme on page load

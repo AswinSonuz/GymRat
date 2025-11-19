@@ -6,7 +6,8 @@
   <title>Register • GymBRO</title>
 
   <link rel="stylesheet" href="stylehome.css" />
-  <script src="register.js" defer></script>
+  <script type="module" src="firebase.js"></script>
+  <script type="module" src="register.js"></script>
 
 </head>
 <body>
@@ -25,37 +26,27 @@
     <p>Start your GymBRO journey</p>
 
     <form id="registerForm">
-
-  <input type="text" id="fullName" placeholder="Full Name" required />
-
-  <input type="text" id="username" placeholder="Username" required />
-
-  <input type="email" id="regEmail" placeholder="Email" required />
-
-  <input type="number" id="age" placeholder="Age" min="14" max="80" required />
-
+  <input id="fullName" type="text" placeholder="Full Name" required>
+  <input id="username" type="text" placeholder="Username" required>
+  <input id="regEmail" type="email" placeholder="Email" required>
+  <input id="age" type="number" placeholder="Age" required>
   <select id="gender" required>
-    <option value="" disabled selected>Gender</option>
-    <option value="male">Male</option>
-    <option value="female">Female</option>
-    <option value="other">Other</option>
+      <option value="">Select gender</option>
+      <option>Male</option>
+      <option>Female</option>
   </select>
-
   <select id="goal" required>
-    <option value="" disabled selected>Your Fitness Goal</option>
-    <option value="fatloss">Fat Loss</option>
-    <option value="muscle">Muscle Gain</option>
-    <option value="bulking">Bulking</option>
-    <option value="maintenance">Maintenance</option>
+      <option value="">Fitness Goal</option>
+      <option>Fat Loss</option>
+      <option>Muscle Gain</option>
+      <option>General Fitness</option>
   </select>
-
-  <input type="password" id="regPassword" placeholder="Password" required />
-  
-  <input type="password" id="confirmPassword" placeholder="Confirm Password" required />
+  <input id="regPassword" type="password" placeholder="Password" required>
+  <input id="confirmPassword" type="password" placeholder="Confirm Password" required>
 
   <button class="auth-btn" type="submit">Register</button>
-
 </form>
+
 
 
     <a href="login.html" class="switch-link">Already have an account? Login</a>

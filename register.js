@@ -1,59 +1,56 @@
-document.getElementById("registerForm").addEventListener("submit", function (e) {
-    e.preventDefault();
+// register.js
+import { auth, db } from "./firebase.js";
 
-    // Get all fields
-    const name = document.getElementById("regName").value.trim();
-    const username = document.getElementById("regUsername").value.trim();
-    const email = document.getElementById("regEmail").value.trim();
-    const password = document.getElementById("regPassword").value.trim();
-    const age = document.getElementById("regAge").value.trim();
-    const gender = document.getElementById("regGender").value;
-    const goal = document.getElementById("regGoal").value;
+import {
+  createUserWithEmailAndPassword,
+  updateProfile
+} from "https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js";
 
-    // Check if account already exists
-    const existing = JSON.parse(localStorage.getItem("gymbro-user"));
-    if (existing && existing.email === email) {
-        showError("Account already exists. Try logging in.");
-        return;
-    }
+import {
+  setDoc,
+  doc
+} from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
 
-    // Save user data in ONE storage key
-    const userData = {
-        name,
-        username,
-        email,
-        password,
-        age,
-        gender,
-        goal
-    };
 
-    localStorage.setItem("gymbro-user", JSON.stringify(userData));
+document.getElementById("registerForm").addEventListener("submit", async (e) => {
+  e.preventDefault();
 
-    // Success
-    showSuccess("Registration Successful!");
-    setTimeout(() => {
-        window.location.href = "login.html";
-    }, 900);
+  const fullName = document.getElementById("fullName").value;
+  const username = document.getElementById("username").value;
+  const email = document.getElementById("regEmail").value;
+  const age = document.getElementById("age").value;
+  const gender = document.getElementById("gender").value;
+  const goal = document.getElementById("goal").value;
+  const password = document.getElementById("regPassword").value;
+  const confirm = document.getElementById("confirmPassword").value;
+
+  if (password !== confirm) {
+    alert("Passwords do not match.");
+    return;
+  }
+
+  try {
+    // Create account
+    const userCred = await createUserWithEmailAndPassword(auth, email, password);
+    const user = userCred.user;
+
+    // Update display name
+    await updateProfile(user, { displayName: fullName });
+
+    // Save additional user data
+    await setDoc(doc(db, "users", user.uid), {
+      name: fullName,
+      username: username,
+      email: email,
+      age: age,
+      gender: gender,
+      goal: goal
+    });
+
+    alert("Registration successful!");
+    window.location.href = "login.html";
+
+  } catch (err) {
+    alert(err.message);
+  }
 });
-
-
-// UI: Premium-style error message
-function showError(msg) {
-    const box = document.querySelector(".auth-box");
-    const error = document.createElement("div");
-    error.className = "error-box";
-    error.innerText = msg;
-    box.prepend(error);
-    setTimeout(() => error.remove(), 3000);
-}
-
-// UI: Premium-style success
-function showSuccess(msg) {
-    const box = document.querySelector(".auth-box");
-    const success = document.createElement("div");
-    success.className = "success-box";
-    success.innerText = msg;
-    box.prepend(success);
-    setTimeout(() => success.remove(), 3000);
-}
